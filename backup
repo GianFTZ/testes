@@ -1,0 +1,16 @@
+{/* <div>
+      <ul>
+        {campos.map(campo =>(
+          <li>
+            <div>{campo.nome}</div>
+            <div>{campo.price}</div>
+          </li>
+        ))}
+      </ul>
+    </div>
+    <button onClick={addCampos}>
+      adicionar
+    </button>
+    <div>
+      Quantidade de campos cadastrados no banco: {manyCampos}
+    </div> */}
