@@ -29,7 +29,20 @@ const FormsC = () => {
         }
         return error
       }
+    //   setHide(!isHide)
+      function unhiddenContents () {
+          setHide(false)
+          setButton(<Button rightIcon={<FiBookOpen />} colorScheme='pink' variant='outline' width={250} onClick={() => { hideContents() }}>fechar</Button>)
+      }
+      const hideContents = () => {
+          setHide(true)
+          setButton(<Button rightIcon={<FiBookOpen />} colorScheme='pink' variant='outline' width={250} onClick={() => { unhiddenContents() }}>cadastros</Button>)
+      }
 
+      const [button, setButton] = useState(
+        <Button rightIcon={<FiBookOpen />} colorScheme='pink' variant='outline' width={250} onClick={() => { unhiddenContents() }}>cadastros</Button>
+      )
+      const [isHide, setHide] = useState(true);
     return(
         <Formik
       initialValues={{ name: 'joao', value: 10 }}
@@ -59,9 +72,21 @@ const FormsC = () => {
             <Button leftIcon={<FiCheck />} colorScheme='pink' variant='solid' isLoading={props.isSubmitting} type='submit' width={250} >
               Cadastrar
             </Button>
-            <Button rightIcon={<FiBookOpen />} colorScheme='pink' variant='outline' width={250} onClick={() => { alert(JSON.stringify(campos, null, 2)) }}>cadastros</Button>
+            {button}
           </Stack>
-      </Form>)}
+          <div hidden={isHide}>
+                <ul>
+                    {campos.map(campo =>(
+                    <li>
+                        <div>{campo.nome}</div>
+                        <div>{campo.price}</div>
+                    </li>
+                    ))}
+                </ul>
+          </div>
+      </Form>
+      )}
+      
     </Formik>
     )
 }
